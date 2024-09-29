@@ -93,7 +93,7 @@ int main()
 		
 			//-------------------propagation--------------
 			// Gera um número randômico entre 0 e 105
-			cs=rand()%105;
+			cs=rand()%13612;
 			
 			I0[1]=E1[cs];
 			I0[2]=E2[cs];

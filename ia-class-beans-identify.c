@@ -21,6 +21,7 @@ int main()
 	int nInputs=7;
 	int nTargets=7;
 	int nCases = 13612; //13612
+	int nNeurons = 3;
 	
 	double er;
 	double I0[7],O0[7],I1[7],O1[7],I2[7],O2[7];
@@ -120,7 +121,7 @@ int main()
 			O0[6]=I0[6];
 			
 			// Aplica os pesos nas entradas e a sigmoid
-			for(j=1;j<=9;j++){
+			for(j=1;j<=6;j++){
 			  	I1[j]=0.0;
 				for(i=1;i<=6;i++){
 				  I1[j]+=O0[i]*w1[i][j];
@@ -132,9 +133,9 @@ int main()
 			I1[5]=1.0;
 			O1[5]=I1[5];
 			
-			for(l=1;l<=9;l++){
+			for(l=1;l<=7;l++){
 				I2[l]=0.0;
-				for(j=1;j<=5;j++){
+				for(j=1;j<=7;j++){
 					I2[l]+=O1[j]*w2[j][l];
 				}
 				
@@ -162,7 +163,7 @@ int main()
 			
 			// Aplica uma correção baseada no gradiente descendente
 			for(l=1;l<=7;l++){
-				for(j=1;j<=6;j++){
+				for(j=1;j<=7;j++){
 					nw2[j][l]= w2[j][l]+0.5*d2[l]*O1[j]+0.5*vw2[j][l];
 					vw2[j][l]=nw2[j][l]-w2[j][l];
 					w2[j][l]=nw2[j][l];
@@ -170,8 +171,8 @@ int main()
 			}
 			
 			//-------------------------------------------------
-			for(j=1;j<=7;j++){
-				for(i=1;i<=5;i++){
+			for(j=1;j<=6;j++){
+				for(i=1;i<=6;i++){
 					nw1[i][j]= w1[i][j]+0.5*d1[j]*O0[i]+0.5*vw1[i][j];
 					vw1[i][j]=nw1[i][j]-w1[i][j];
 					w1[i][j]=nw1[i][j];
@@ -193,7 +194,7 @@ int main()
 	
 	// Mostra os resultaddos dos pesos encontrados
 	printf("\nPesos encontrados: \n");
-	for(j=1;j<=7;j++){
+	for(j=1;j<=6;j++){
 		for(i=1;i<=6;i++){
 		 	printf("%f ",w1[i][j]);
 		}
@@ -201,7 +202,7 @@ int main()
 	}
 	
 	for(l=1;l<=7;l++){
-		for(j=1;j<=5;j++){
+		for(j=1;j<=7;j++){
 	 		printf("%f ",w2[j][l]);		
 		}
 		printf("\n");
@@ -250,7 +251,7 @@ int main()
 		O0[6]=I0[6];
 		
 		// Calculo das ativacoes da camada intermediaria
-		for(j=1;j<=7;j++){
+		for(j=1;j<=6;j++){
 		  	I1[j]=0.0;
 			for(i=1;i<=6;i++){
 			  I1[j]+=O0[i]*w1[i][j];
@@ -264,14 +265,14 @@ int main()
 		
 		for(l=1;l<=7;l++){
 			I2[l]=0.0;
-			for(j=1;j<=5;j++){
+			for(j=1;j<=7;j++){
 				I2[l]+=O1[j]*w2[j][l];
 			}
 			O2[l]=sigmoid_simplified(I2[l]);
 		}
 
 		// If para contar a acuracia e o loss da amostra 1 
-		if(O2[1]>O2[2] && O2[1]>O2[3]){
+		if(O2[1]>O2[2] && O2[1]>O2[3] && O2[1]>O2[4] && O2[1]>O2[5] && O2[1]>O2[6] && O2[1]>O2[7]) {
 			cont +=1;
 			loss += (-log(O2[1]));
 		}

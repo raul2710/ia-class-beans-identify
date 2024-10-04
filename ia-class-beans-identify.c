@@ -66,7 +66,7 @@ int main()
 
 	// Verifica se o arquivo existe
 //   	if ((in =fopen("./DryBeanDataset/dry_bean_data_input_random.txt", "rt"))== NULL)
-    if ((in =fopen("./DryBeanDataset/dry_beans_processed_70_random.txt", "rt"))== NULL)
+    if ((in =fopen("./DryBeanDataset/dry_beans_processed_70_random.csv", "rt"))== NULL)
 	{
 		printf("Cannot open input file.\n");
 		return 1;
@@ -74,7 +74,9 @@ int main()
 
 	// Se existir vai salvar as entradas e suas respectivas saidas nos targets
    	while(!feof(in)){
-		fscanf(in,"%lf%lf%lf%lf%lf%lf%lf%lf%lf%lf%lf%lf",&E1[i],&E2[i],&E3[i],&E4[i],&E5[i],&t1[i],&t2[i],&t3[i],&t4[i],&t5[i],&t6[i],&t7[i]);
+//		fscanf(in,"%lf%lf%lf%lf%lf%lf%lf%lf%lf%lf%lf%lf",&E1[i],&E2[i],&E3[i],&E4[i],&E5[i],&t1[i],&t2[i],&t3[i],&t4[i],&t5[i],&t6[i],&t7[i]);
+		fscanf(in,"%lf;%lf;%lf;%lf;%lf;%lf;%lf;%lf;%lf;%lf;%lf;%lf",&E1[i],&E2[i],&E3[i],&E4[i],&E5[i],&t1[i],&t2[i],&t3[i],&t4[i],&t5[i],&t6[i],&t7[i]);
+
 	  	i++;
 	}
 
